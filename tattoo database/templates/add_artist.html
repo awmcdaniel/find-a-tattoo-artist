@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<title>Add an Artist to the Tattoo Database</title>
+</head>
+<body>
+	<form method="post">
+	<fieldset>
+		<legend>Add a tattoo artist</legend>
+			<!-- 1) text -->
+			<p>Artist name: 
+				<input type="text" name="artist_name" required> *required</p>
+			<!-- 2) checkbox -->
+			<p>Artist tattoos in these styles:</p>
+				<label><input type="checkbox" name="artist_style[]" value="Abstract/geometric">Abstract/geometric</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="American traditional (old school)">American traditional (old school)</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Biomechanical">Biomechanical</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Black and grey">Black and grey</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Color">Color</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Dotwork">Dotwork</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Illustrative (new school)">Illustrative (new school)</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Japanese traditional">Japanese traditional</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Portraiture">Portraiture</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Realist">Realist</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Script">Script</label>
+			<p>City where the artist tattoos:
+				<input type="text" name="artist_city" required> *required</p>
+			<!-- 3) URL -->
+			<p>Link to artist portfolio or website: 
+			<input type="url" name="artist_url"></p>
+			<!-- 4) email -->
+			<p>Artist email address:
+			<input type="email" name="artist_email"></p>
+			<!-- 5) radio -->
+			<p>Do you have a tattoo by this artist?
+			<input type="radio" name="tattoo_bool" value="yes"> Yes 
+			<input type="radio" name="tattoo_bool" value="no" checked> No</p>
+			<p>How would you rate your tattoo from this artist? (1 = poor tattoo, 5 = excellent tattoo)</p>
+			<select name="artist_rating">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<p>Comments about your experience with the artist:
+			<input type="text" name="artist_comments"></p>
+			<input type="submit" name="artist_submit">
+	</fieldset>
+	</form>
+</body>
+</html>

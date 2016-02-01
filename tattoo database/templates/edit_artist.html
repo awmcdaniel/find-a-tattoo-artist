@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<title>Edit an Artist in the Tattoo Database</title>
+</head>
+<body>
+	{% if artist|length <= 0 %}
+	<section>
+	<p>There was a problem editing the information for the selected artist. <a href='/'>Return to all artists</a>.</p>
+	</section>
+	{% endif %}
+	{% if artist|length > 0 %}
+	{% for element in artist %}
+	<form method="post">
+	<fieldset>
+		<legend>Edit an artist</legend>
+		
+			<!-- 1) text -->
+			<p>Artist name: 
+				<input type="text" name="artist_name" value='{{ element.artist_name }}' required> *required</p>
+			<!-- 2) checkbox -->
+			<p>Artist tattoos in these styles:</p>
+				<label><input type="checkbox" name="artist_style[]" value="Abstract/geometric" {% for style in element.artist_style %}{% if style == "Abstract/geometric" %}checked{% endif %}{% endfor %}>Abstract/geometric</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="American traditional (old school)" {% for style in element.artist_style %}{% if style == "American traditional (old school)" %}checked{% endif %}{% endfor %}>American traditional (old school)</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Biomechanical" {% for style in element.artist_style %}{% if style == "Biomechanical" %}checked{% endif %}{% endfor %}>Biomechanical</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Black and grey" {% for style in element.artist_style %}{% if style == "Black and grey" %}checked{% endif %}{% endfor %}>Black and grey</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Color" {% for style in element.artist_style %}{% if style == "Color" %}checked{% endif %}{% endfor %}>Color</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Dotwork" {% for style in element.artist_style %}{% if style == "Dotwork" %}checked{% endif %}{% endfor %}>Dotwork</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Illustrative (new school)" {% for style in element.artist_style %}{% if style == "Illustrative (new school)" %}checked{% endif %}{% endfor %}>Illustrative (new school)</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Japanese traditional" {% for style in element.artist_style %}{% if style == "Japanese traditional" %}checked{% endif %}{% endfor %}>Japanese traditional</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Portraiture" {% for style in element.artist_style %}{% if style == "Portraiture" %}checked{% endif %}{% endfor %}>Portraiture</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Realist" {% for style in element.artist_style %}{% if style == "Realist" %}checked{% endif %}{% endfor %}>Realist</label><br>
+				<label><input type="checkbox" name="artist_style[]" value="Script" {% for style in element.artist_style %}{% if style == "Script" %}checked{% endif %}{% endfor %}>Script</label>
+			<p>City where the artist tattoos:
+				<input type="text" name="artist_city" value='{{ element.artist_city }}' required> *required</p>
+			<!-- 3) URL -->
+			<p>Link to artist portfolio or website: 
+			<input type="url" name="artist_url" value='{{ element.artist_url }}'></p>
+			<!-- 4) email -->
+			<p>Artist email address:
+			<input type="email" name="artist_email" value='{{ element.artist_email }}'></p>
+			<!-- 5) radio -->
+			<p>Do you have a tattoo by this artist?
+			{% if element.tattoo_bool == "yes" %}
+			<input type="radio" name="tattoo_bool" value="yes" checked> Yes 
+			<input type="radio" name="tattoo_bool" value="no"> No</p>
+			{% endif %}
+			{% if element.tattoo_bool == "no" %}
+			<input type="radio" name="tattoo_bool" value="yes"> Yes 
+			<input type="radio" name="tattoo_bool" value="no" checked> No</p>
+			{% endif %}
+			<p>How would you rate your tattoo from this artist? (1 = poor tattoo, 5 = excellent tattoo)</p>
+			<select name="artist_rating">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<p>Comments about your experience with the artist:
+			<input type="text" name="artist_comments" value='{{ element.artist_comments }}'></p>
+			<input type="submit" name="artist_update">
+	</fieldset>
+	</form>
+	<p><a href='/'>Back to all artists</a>.</p>
+	{% endfor %}
+	{% endif %}
+</body>
+</html>

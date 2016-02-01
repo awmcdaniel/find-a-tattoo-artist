@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<title>All Artists in the Tattoo Database</title>
+</head>
+<body>
+{% if artists|length <= 0 %}
+<section>
+<p>No artists found in the database. <a href="/add">Add an artist</a>.</p>
+</section>
+{% endif %}
+{% if artists|length > 0 %}
+<table>
+	<tr>
+		<th>Name</th>
+		<th>City</th>
+		<th>Website</th>
+		<th>Styles</th>
+		<th>Email</th>
+		<th>Rating</th>
+		<th>Comments</th>
+		<th>Edit</th>
+	</tr>
+	{% for element in artists %}
+	<tr>
+		<td>{{ element.artist_name }}</td>
+		<td>{{ element.artist_city }}</td>
+		<td>{{ element.artist_url }}</td>
+		<td>
+		{% for style in element.artist_style %}
+			{{ style }} 
+		{% endfor %}
+		</td>
+		<td>{{ element.artist_email }}</td>
+		<td>{{ element.artist_rating }}</td>
+		<td>{{ element.artist_comments }}</td>
+		<td><a href='/edit?key={{ element.key }}'>edit</a></td>
+	</tr>
+	{% endfor %}
+</table>
+<p><a href="/add">Add an artist</a>.</p>
+{% endif %}
+</body>
+</html>
